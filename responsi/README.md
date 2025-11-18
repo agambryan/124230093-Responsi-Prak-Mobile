@@ -1,14 +1,15 @@
-# Responsi - Anime App
+# Responsi - MyTokoApp
 
-Aplikasi mobile Flutter untuk menampilkan data anime dari API Jikan dengan fitur autentikasi, favorites, dan profile management.
+Aplikasi mobile Flutter untuk menampilkan data toko dari API Jikan dengan fitur autentikasi, favorites, dan profile management.
 
 ## 📱 Tentang Aplikasi
 
-Aplikasi ini dibuat sebagai responsi praktikum mobile programming yang menampilkan daftar anime terpopuler menggunakan Jikan API (MyAnimeList API). Aplikasi dilengkapi dengan sistem autentikasi lokal, fitur favorit, dan manajemen profil pengguna dengan kemampuan upload foto profil.
+Aplikasi ini dibuat sebagai responsi praktikum mobile programming yang menampilkan daftar Toko terpopuler menggunakan Jikan API (MyTokoList API). Aplikasi dilengkapi dengan sistem autentikasi lokal, fitur favorit, dan manajemen profil pengguna dengan kemampuan upload foto profil.
 
 ## ✨ Fitur Utama
 
 ### 1. 📝 Halaman Register
+
 - Form registrasi dengan username dan password (wajib)
 - Field tambahan: Nama Lengkap dan NIM (opsional)
 - Validasi input
@@ -16,30 +17,35 @@ Aplikasi ini dibuat sebagai responsi praktikum mobile programming yang menampilk
 - Auto redirect ke halaman login setelah registrasi berhasil
 
 ### 2. 🔐 Halaman Login
+
 - Form login dengan username dan password
 - Validasi kredensial dengan data Hive
 - Session login disimpan ke SharedPreferences
 - Auto login jika session masih aktif
 
 ### 3. 🏠 Halaman Utama (Home)
-- Menampilkan top anime dari API Jikan
+
+- Menampilkan top Toko dari API Jikan
 - Grid view dengan poster, judul, dan rating
 - Pull to refresh
 - Navigasi ke halaman detail
 
 ### 4. 📄 Halaman Detail
-- Informasi lengkap anime (poster, judul, score, sinopsis, episodes, status)
+
+- Informasi lengkap Toko (poster, judul, score, sinopsis, episodes, status)
 - Tombol favorite untuk menyimpan ke daftar favorit
 - Icon favorite berubah warna saat diklik
 - Data favorit disimpan ke SharedPreferences
 
 ### 5. ⭐ Halaman Favorites
-- Menampilkan daftar anime favorit
+
+- Menampilkan daftar Toko favorit
 - Grid view dengan poster, judul, dan rating
 - Badge favorite pada setiap card
 - Navigasi ke halaman detail
 
 ### 6. 👤 Halaman Profile
+
 - Menampilkan foto profil, nama, NIM, dan username
 - Username diambil dari database Hive
 - Tombol logout dengan konfirmasi
@@ -48,18 +54,19 @@ Aplikasi ini dibuat sebagai responsi praktikum mobile programming yang menampilk
 
 ## 🛠️ Teknologi yang Digunakan
 
-| Teknologi | Fungsi |
-|-----------|--------|
-| **Flutter SDK** | Framework UI cross-platform |
-| **Hive** | Local database NoSQL untuk menyimpan data user |
-| **SharedPreferences** | Menyimpan session login dan data favorit |
-| **HTTP Package** | Fetch data dari REST API |
-| **Image Picker** | Mengambil foto dari kamera/galeri |
-| **Jikan API** | Sumber data anime (MyAnimeList unofficial API) |
+| Teknologi             | Fungsi                                         |
+| --------------------- | ---------------------------------------------- |
+| **Flutter SDK**       | Framework UI cross-platform                    |
+| **Hive**              | Local database NoSQL untuk menyimpan data user |
+| **SharedPreferences** | Menyimpan session login dan data favorit       |
+| **HTTP Package**      | Fetch data dari REST API                       |
+| **Image Picker**      | Mengambil foto dari kamera/galeri              |
+| **Jikan API**         | Sumber data Toko (MyTokoList unofficial API)   |
 
 ### API Endpoint
-- **Base URL**: `https://api.jikan.moe/v4`
-- **Endpoint**: `/top/anime`
+
+- **Base URL**: `https://fakestoreapi.com/products`
+- **Endpoint**: `/top/Toko`
 - **Rate Limit**: 3 requests per second, 60 requests per minute
 - **Response Format**: JSON
 
@@ -70,7 +77,7 @@ responsi/
 ├── lib/
 │   ├── main.dart                    # Entry point aplikasi
 │   ├── models/
-│   │   ├── anime_model.dart         # Model data anime dari API
+│   │   ├── Toko_model.dart         # Model data Toko dari API
 │   │   ├── user_model.dart          # Model data user (Hive)
 │   │   └── user_model.g.dart        # Generated Hive adapter
 │   ├── services/
@@ -81,8 +88,8 @@ responsi/
 │   └── pages/
 │       ├── register_page.dart       # Halaman registrasi user
 │       ├── login_page.dart          # Halaman login
-│       ├── home_page.dart           # Halaman utama (list anime)
-│       ├── detail_page.dart         # Halaman detail anime
+│       ├── home_page.dart           # Halaman utama (list Toko)
+│       ├── detail_page.dart         # Halaman detail Toko
 │       ├── favorites_page.dart      # Halaman daftar favorit
 │       └── profile_page.dart        # Halaman profile user
 ├── pubspec.yaml                     # Dependencies & assets
@@ -92,6 +99,7 @@ responsi/
 ## 🚀 Setup & Installation
 
 ### Prerequisites
+
 - Flutter SDK (versi 3.0 atau lebih tinggi)
 - Android Studio / VS Code dengan Flutter extension
 - Android SDK atau iOS Simulator
@@ -100,22 +108,26 @@ responsi/
 ### Langkah Instalasi
 
 1. **Clone repository**
+
    ```bash
    git clone <repository-url>
    cd 124230093-Responsi-Prak-Mobile/responsi
    ```
 
 2. **Install dependencies**
+
    ```bash
    flutter pub get
    ```
 
 3. **Generate Hive adapters**
+
    ```bash
    flutter pub run build_runner build --delete-conflicting-outputs
    ```
 
 4. **Jalankan aplikasi**
+
    ```bash
    # Untuk debug mode
    flutter run
@@ -127,16 +139,19 @@ responsi/
 ### Troubleshooting
 
 #### Error: Hive adapter not found
+
 ```bash
 flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
 #### Error: API tidak merespons
+
 - Pastikan koneksi internet aktif
 - Cek rate limit API Jikan (max 60 requests/minute)
 - Tunggu beberapa saat jika terkena rate limit
 
 #### Error: Image picker tidak bekerja
+
 - Tambahkan permission di `AndroidManifest.xml`:
   ```xml
   <uses-permission android:name="android.permission.CAMERA"/>
@@ -166,23 +181,27 @@ flutter pub run build_runner build --delete-conflicting-outputs
 ## 📝 Cara Penggunaan
 
 1. **Registrasi Akun**
+
    - Buka aplikasi dan klik "Register"
    - Isi username dan password (wajib)
    - Isi nama lengkap dan NIM (opsional)
    - Klik tombol Register
 
 2. **Login**
+
    - Masukkan username dan password yang sudah didaftarkan
    - Klik Login
    - Aplikasi akan mengingat sesi login Anda
 
-3. **Menjelajah Anime**
-   - Scroll untuk melihat daftar top anime
+3. **Menjelajah Toko**
+
+   - Scroll untuk melihat daftar top Toko
    - Pull down untuk refresh data
-   - Klik card anime untuk melihat detail
+   - Klik card Toko untuk melihat detail
 
 4. **Menambah Favorit**
-   - Buka detail anime
+
+   - Buka detail Toko
    - Klik icon heart untuk menambah/menghapus favorit
    - Lihat semua favorit di tab Favorites
 
@@ -193,7 +212,7 @@ flutter pub run build_runner build --delete-conflicting-outputs
 
 ## 📸 Screenshots
 
-> *Tambahkan screenshot aplikasi di sini untuk dokumentasi yang lebih baik*
+> _Tambahkan screenshot aplikasi di sini untuk dokumentasi yang lebih baik_
 
 ## 🤝 Kontribusi
 
